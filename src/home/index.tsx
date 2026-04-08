@@ -1,24 +1,15 @@
 import { useState, useEffect } from 'react'
 
-interface Ranking {
-  rank: number
-  contestantName: string
-  points: number
-  matchesPlayed: number
-}
-
 function FHOME() {
-  const [ranking, setRanking] = useState<Ranking[]>([])
-  const [title, setTitle] = useState('')
+  const [authors, setAuthors] = useState<string[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('https://raw.githubusercontent.com/sdtibata/dataliga/refs/heads/main/posiciones.json')
+        const res = await fetch('https://poetrydb.org/author')
         const data = await res.json()
 
-        setRanking(data.standings[0].ranking)
-        setTitle(data.standings[0].competitionName)
+        setAuthors(data.authors)
       } catch (error) {
         console.error('Error cargando datos:', error)
       }
@@ -29,23 +20,19 @@ function FHOME() {
 
   return (
     <div className="tabla-container">
-      <h2>{title}</h2>
+      <h2>Autores de Poesia</h2>
       <table className="tabla-posiciones">
         <thead>
           <tr>
             <th>#</th>
-            <th>Equipo</th>
-            <th>PJ</th>
-            <th>Pts</th>
+            <th>Autor</th>
           </tr>
         </thead>
         <tbody>
-          {ranking.map((equipo) => (
-            <tr key={equipo.rank}>
-              <td>{equipo.rank}</td>
-              <td>{equipo.contestantName}</td>
-              <td>{equipo.matchesPlayed}</td>
-              <td>{equipo.points}</td>
+          {authors.map((author, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{author}</td>
             </tr>
           ))}
         </tbody>
