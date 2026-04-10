@@ -27,6 +27,9 @@ function FHOME() {
 //https://github.com/sdtibata/liga-react/blob/main/src/home/index.tsx --- IGNORE ---
     fetchData()
   }, [])
+
+type FiltroTipo = 'posiciones' | 'goleador' | 'asistencias' | 'amarillas' | 'atajadas'
+
 const equiposMap: Record<string, string> = {
   "América de Cali SA": "america-de-cali",
   "AD Pasto": "pasto",
@@ -49,7 +52,11 @@ const equiposMap: Record<string, string> = {
   "Cúcuta Deportivo FC": "cucuta",
   "Boyacá Chicó FC": "boyaca-chico",
   "Deportivo Pereira FC": "pereira",
+  
 };
+
+  const filtros: FiltroTipo[] = ['posiciones', 'goleador', 'asistencias', 'amarillas', 'atajadas']
+
   return (
     <div className="tabla-container">
       <h2>{title}</h2>

@@ -51,11 +51,55 @@ function FEQUIPO (){
 }, [equipo]);
 if (!data) return <p>Cargando...</p>;
 
-    return (
-        <>
-        {data.team.name}
-        </>
-    )   
+  return (
+    <div>
+      <h1>{data.team.name}</h1>
+
+      <h2>Información</h2>
+      <p><strong>Ciudad:</strong> {data.team.info.city}</p>
+      <p><strong>Fundado:</strong> {data.team.info.founded}</p>
+      <p><strong>Estadio:</strong> {data.team.info.stadium}</p>
+      <p><strong>Presidente:</strong> {data.team.info.president}</p>
+      <p><strong>Último título:</strong> {data.team.info.last_title}</p>
+
+      <h2>Ranking</h2>
+      <p><strong>Posición:</strong> {data.team.ranking.position}</p>
+      <p><strong>Competencia:</strong> {data.team.ranking.competition}</p>
+
+      <h2>Redes</h2>
+      <ul>
+        <li>
+          <a href={data.team.social.facebook} target="_blank" rel="noreferrer">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href={data.team.social.instagram} target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href={data.team.social.x} target="_blank" rel="noreferrer">
+            X (Twitter)
+          </a>
+        </li>
+      </ul>
+
+      <h2>Extras</h2>
+      <ul>
+        <li>
+          <a href={data.team.links.store} target="_blank" rel="noreferrer">
+            Tienda oficial
+          </a>
+        </li>
+        <li>
+          <a href={data.team.links.tickets} target="_blank" rel="noreferrer">
+            Comprar boletas
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
 }
 
-export default FEQUIPO
+export default FEQUIPO;
