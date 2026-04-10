@@ -22,7 +22,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<FHOME />} />
-          <Route path="/equipo" element={<FEQUIPO />} />
+          <Route path="/equipo/:equipo" element={<FEQUIPO />} />
           <Route path="/favoritos" element={<FfAVORITOS />} />
           <Route path="/informativa" element={<FINDEX />} />
           <Route path="/extra" element={<FEXTRA />} />

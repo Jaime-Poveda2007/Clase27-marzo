@@ -183,7 +183,7 @@
   }
 }
 .c-menu{
-    background: silver;
+    background: rgba(152, 0, 212, 0.774);
     display: flex;
     justify-content: center;
     gap: 10px;
