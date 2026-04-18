@@ -1,6 +1,6 @@
-import { useParams } from "react-router"
+import "./style.css";
 import { useState, useEffect } from 'react'
-
+import { useParams } from "react-router";
 interface TeamData {
   team: {
     name: string;
@@ -26,13 +26,21 @@ interface TeamData {
     };
   };
 }
-
-
-function FEQUIPO (){
-    const {equipo } = useParams<{ equipo: string }>()
+function Equipo(){
+    const {equipo}=useParams<{equipo:string}>()
     const [data, setData] = useState<TeamData | null>(null);
-  useEffect(() => {
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
   if (!equipo) return;
+
+   // Revisar si ya es favorito
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+  if (favorites.includes(equipo)) {
+    setIsFavorite(true);
+  }
+
 
   const fetchData = async () => {
     try {
@@ -49,11 +57,31 @@ function FEQUIPO (){
 
   fetchData();
 }, [equipo]);
-if (!data) return <p>Cargando...</p>;
+const toggleFavorite = () => {
+  if (!equipo) return;
 
-  return (
-    <div>
+  let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+  if (favorites.includes(equipo)) {
+      favorites = favorites.filter((fav: string) => fav !== equipo);
+      setIsFavorite(false);
+    } else {
+      favorites.push(equipo);
+      setIsFavorite(true);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
+
+       if (!data) return <p>Cargando...</p>;
+    
+    return(
+        <>
+      <div>
       <h1>{data.team.name}</h1>
+       <button onClick={toggleFavorite}>
+          {isFavorite ? "❤️" : "🤍"}
+        </button>
 
       <h2>Información</h2>
       <p><strong>Ciudad:</strong> {data.team.info.city}</p>
@@ -99,7 +127,7 @@ if (!data) return <p>Cargando...</p>;
         </li>
       </ul>
     </div>
-  );
+        </>
+    )
 }
-
-export default FEQUIPO;
+export default Equipo;
