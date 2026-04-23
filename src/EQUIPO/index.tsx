@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import "./style.css"
+import "./styleE.css"
 
 function FEQUIPO() {
     const [authors, setAuthors] = useState<string[]>([])

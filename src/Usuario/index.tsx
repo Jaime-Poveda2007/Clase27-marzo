@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./style.css";
+import "./styleU.css";
 
 function FUSUARIO() {
   const [username, setUsername] = useState("Invitado");
