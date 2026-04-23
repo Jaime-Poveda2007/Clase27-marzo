@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 function FHOME() {
   const [authors, setAuthors] = useState<string[]>([])
+  const [busqueda, setBusqueda] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,10 +18,19 @@ function FHOME() {
 //https://github.com/sdtibata/liga-react/blob/main/src/home/index.tsx --- IGNORE ---
     fetchData()
   }, [])
-
+  const authorsFiltrados = authors.filter((autor) =>
+    autor.toLowerCase().includes(busqueda.toLowerCase())
+)
   return (
     <div className="tabla-container">
       <h2>Autores de Poesia</h2>
+
+      <input
+        type="text"
+        placeholder="Buscar autor..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
       <table className="tabla-posiciones">
         <thead>
           <tr>
@@ -29,7 +39,7 @@ function FHOME() {
           </tr>
         </thead>
         <tbody>
-          {authors.map((author, index) => (
+          {authorsFiltrados.map((author, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{author}</td>
