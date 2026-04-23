@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import './style.css'
 function FHOME() {
   const [authors, setAuthors] = useState<string[]>([])
   const [busqueda, setBusqueda] = useState('')
@@ -15,7 +15,6 @@ function FHOME() {
         console.error('Error cargando datos:', error)
       }
     }
-//https://github.com/sdtibata/liga-react/blob/main/src/home/index.tsx --- IGNORE ---
     fetchData()
   }, [])
   const authorsFiltrados = authors.filter((autor) =>
