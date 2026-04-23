@@ -27,6 +27,12 @@ function FUSUARIO() {
     localStorage.setItem("username", cleanName);
   };
 
+  const quitarFavorito = (autor: string) => {
+    const nuevosFavoritos = favoritos.filter((item) => item !== autor);
+    setFavoritos(nuevosFavoritos);
+    localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+  };
+
   return (
     <div className="usuario-container">
       <h2>Usuario</h2>
@@ -50,7 +56,12 @@ function FUSUARIO() {
       {favoritos.length > 0 ? (
         <ul className="lista-favoritos">
           {favoritos.map((autor) => (
-            <li key={autor}>{autor}</li>
+            <li key={autor}>
+              {autor}{" "}
+              <button onClick={() => quitarFavorito(autor)}>
+                Quitar
+              </button>
+            </li>
           ))}
         </ul>
       ) : (
