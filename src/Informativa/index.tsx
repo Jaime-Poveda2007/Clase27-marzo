@@ -1,13 +1,11 @@
+import { useNavigate } from "react-router"
+import { Users, Search, Heart, BookOpen, Globe, Sparkles } from "lucide-react"
 import "./style.css"
 
 function IconoPrincipal() {
   return (
     <div className="icon-main">
-      <svg viewBox="0 0 32 32" fill="none">
-        <path d="M8 6h10l6 6v14H8V6z" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M18 6v6h6" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M11 16h10M11 20h7" stroke="#378ADD" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
+      <BookOpen size={40} strokeWidth={1.2} color="#eebbc3" />
     </div>
   )
 }
@@ -15,7 +13,7 @@ function IconoPrincipal() {
 function Titulo() {
   return (
     <p className="title">
-      Explora a los<br/><em>grandes poetas</em>
+      Explora a los<br /><em>grandes poetas</em>
     </p>
   )
 }
@@ -29,66 +27,103 @@ function Subtitulo() {
 }
 
 function Divider() {
-  return <div className="divider"></div>
+  return <div className="divider" />
+}
+
+const stats = [
+  { value: "128", label: "Autores" },
+  { value: "10k+", label: "Poemas" },
+  { value: "100%", label: "Gratis" },
+]
+
+function Stats() {
+  return (
+    <div className="stats">
+      {stats.map((s) => (
+        <div key={s.label} className="stat">
+          <span className="stat-value">{s.value}</span>
+          <span className="stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 const features = [
-  { 
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#185fa5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>,
-    title: "Catálogo de autores", 
-    desc: "Navega por la lista completa de poetas."
+  {
+    Icon: Users,
+    title: "Catálogo de autores",
+    desc: "Navega por la lista completa de poetas clásicos de la literatura en inglés.",
   },
-  { 
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#185fa5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5l4 4"/></svg>,
-    title: "Búsqueda por autor", 
-    desc: "Encuentra poemas al instante."
+  {
+    Icon: Search,
+    title: "Búsqueda por autor",
+    desc: "Encuentra poemas al instante con nuestra búsqueda en tiempo real.",
   },
-  { 
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#185fa5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6.065 6.065 0 0 1 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>,
-    title: "Guarda favoritos", 
-    desc: "Accede rápido a tus poetas."
-  }
+  {
+    Icon: Heart,
+    title: "Guarda favoritos",
+    desc: "Marca tus poetas preferidos y accede a ellos rápidamente.",
+  },
+  {
+    Icon: Globe,
+    title: "Fuente confiable",
+    desc: "Todos los datos provienen de poetrydb.org, una API pública y actualizada.",
+  },
 ]
 
 function Features() {
   return (
-    <>
-      {features.map((f, i) => (
-        <div key={i} className="feature">
-          <div className="feature-icon">{f.icon}</div>
+    <div className="features-grid">
+      {features.map(({ Icon, title, desc }) => (
+        <div key={title} className="feature">
+          <div className="feature-icon">
+            <Icon size={26} strokeWidth={1.5} color="#eebbc3" />
+          </div>
           <div>
-            <p className="feature-title">{f.title}</p>
-            <p className="feature-desc">{f.desc}</p>
+            <p className="feature-title">{title}</p>
+            <p className="feature-desc">{desc}</p>
           </div>
         </div>
       ))}
-    </>
+    </div>
   )
 }
 
-function Tags() {
+function CTA() {
+  const navigate = useNavigate()
   return (
-    <div className="tags">
-      <span className="tag">128 autores</span>
-      <span className="tag">Gratis</span>
-      <span className="tag">Sin registro</span>
+    <div className="cta-group">
+      <button className="cta-primary" onClick={() => navigate("/")}>
+        <Sparkles size={16} />
+        Explorar poetas
+      </button>
+      <button className="cta-secondary" onClick={() => navigate("/favoritos")}>
+        <Heart size={16} />
+        Mis favoritos
+      </button>
     </div>
   )
 }
 
 function Fuente() {
-  return <p className="source">Fuente: <code>poetrydb.org</code></p>
+  return (
+    <p className="source">
+      Fuente: <code>poetrydb.org</code>
+    </p>
+  )
 }
 
 function FINFORMATIVA() {
   return (
-    <div className="container">
+    <div className="informativa-container">
       <IconoPrincipal />
       <Titulo />
       <Subtitulo />
+      <Stats />
       <Divider />
       <Features />
-      <Tags />
+      <CTA />
       <Fuente />
     </div>
   )

@@ -23,30 +23,73 @@ body {
   padding-bottom: 70px;
 }
 
+/* ── Bottom Nav ── */
+
 .c-menu {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
-  padding: 12px 0;
+  height: 64px;
   background: #121629;
   border-top: 1px solid rgba(184, 193, 236, 0.15);
   z-index: 100;
+  padding: 0 4px;
 }
 
-.c-menu a {
+.c-menu__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 2px;
   color: #b8c1ec;
   text-decoration: none;
-  font-size: 0.9rem;
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 6px 2px;
+  border-radius: 10px;
+  transition: color 0.2s;
+  min-width: 0;
+}
+
+.c-menu__item.activo {
+  color: #fffffe;
+}
+
+.c-menu__item.activo .c-menu__icon {
+  background: rgba(184, 193, 236, 0.15);
+  border-radius: 12px;
+}
+
+.c-menu__icon {
+  font-size: 1.3rem;
+  padding: 4px 12px;
   transition: background 0.2s;
 }
 
-.c-menu a:hover {
-  background: rgba(238, 187, 195, 0.12);
-  color: #fffffe;
+.c-menu__label {
+  font-size: 0.65rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* En pantallas muy pequeñas, oculta las etiquetas */
+@media (max-width: 360px) {
+  .c-menu__label {
+    display: none;
+  }
+
+  .c-menu {
+    height: 52px;
+  }
+
+  #root {
+    padding-bottom: 52px;
+  }
 }
