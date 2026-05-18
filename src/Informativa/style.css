@@ -1,69 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #232946;
-  color: #fffffe;
-  min-height: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-.container {
-  max-width: 10000px;
+.informativa-container {
   width: 100%;
-  height: 90vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 40px 30px;
+  padding: 40px 30px 80px;
   gap: 20px;
-}
-
-.icon-main {
-  width: 84px;
-  height: 84px;
-  border-radius: 22px;
-  background: rgba(18, 22, 41, 0.6);
-  border: 1px solid #121629;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(18, 22, 41, 0.25);
-}
-
-.icon-main svg {
-  width: 42px;
-  height: 42px;
+  overflow-y: auto;
 }
 
 .title {
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.05;
   color: #fffffe;
-  margin-bottom: 10px;
 }
 
 .title em {
   font-style: normal;
   color: #eebbc3;
-  font-weight: 800;
 }
 
 .subtitle {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.6;
   max-width: 680px;
   color: #b8c1ec;
@@ -74,7 +35,6 @@ body {
   height: 3px;
   background: linear-gradient(90deg, transparent, #eebbc3, transparent);
   border-radius: 999px;
-  margin: 10px 0 18px;
 }
 
 .feature {
@@ -102,11 +62,6 @@ body {
   flex-shrink: 0;
 }
 
-.feature-icon svg {
-  width: 28px;
-  height: 28px;
-}
-
 .feature-title {
   font-size: 1.15rem;
   font-weight: 700;
@@ -125,7 +80,6 @@ body {
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 18px;
 }
 
 .tag {
@@ -135,35 +89,9 @@ body {
   border-radius: 999px;
   font-size: 0.92rem;
   font-weight: 700;
-  border: 1px solid rgba(18, 22, 41, 0.18);
-}
-
-.source {
-  color: #b8c1ec;
-  font-size: 0.88rem;
-  margin-top: 8px;
-}
-
-.source code {
-  background: rgba(18, 22, 41, 0.55);
-  color: #fffffe;
-  padding: 2px 6px;
-  border-radius: 6px;
 }
 
 @media (max-width: 768px) {
-  body {
-    padding: 12px;
-    overflow: auto;
-  }
-
-  .container {
-    width: 100%;
-    height: auto;
-    min-height: 100vh;
-    padding: 30px 18px;
-  }
-
   .feature {
     flex-direction: column;
     text-align: center;
